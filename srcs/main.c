@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/03/08 00:40:47 by marykman         ###   ########.fr       */
+/*   Updated: 2025/03/08 21:14:11 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(void)
 	game = (t_game){0};
 	sc = (t_sc_main){0};
 	sfe = sfe_init("Cub3D", (t_point){750, 500});
+	sfe_set_max_fps(sfe, 60);
 
 	sc.scene = sfe_new_scene(sfe, &sc);
 	sc.scene.f_init = &sc_main_init;
