@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/03/08 00:40:35 by marykman         ###   ########.fr        #
+#    Updated: 2025/03/12 07:01:19 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,9 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 
 NAME				:=	cub3d
 
-FILES				:=	main.c
+FILES				:=	main.c \
+						draw_line.c \
+						draw_map.c
 FILES_SC_MAIN		:=	init.c \
 						update.c \
 						destroy.c
