@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/03/12 08:27:12 by marykman         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:04:23 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ int	main(void)
 
 	game = (t_game){0};
 	sc = (t_sc_main){0};
-	sfe = sfe_init("Cub3D", (t_point){500, 500});
-	sfe_set_max_fps(sfe, 60);
+
+	// TODO: Parsing
+	// game.map = parsing(argv[1]);
+	
+	sfe = sfe_init("Cub3D", (t_point){700, 700});
+	sfe_set_max_fps(sfe, 120);
 
 	sc.scene = sfe_new_scene(sfe, &sc);
 	sc.scene.f_init = &sc_main_init;

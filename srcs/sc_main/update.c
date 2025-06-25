@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/03/12 08:29:47 by marykman         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:05:48 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_view_angle(t_player player, int tile_size, t_img *img)
 	t_point		start = {player.pos.x * tile_size, player.pos.y * tile_size};
 	t_point		finish = {start.x + cos(player.view_angle) * 100, start.y + sin(player.view_angle) * 100};
 
-	ft_printf("finish: %d %d\n", finish.x, finish.y);
+	// ft_printf("finish: %d %d\n", finish.x, finish.y);
 
 	sfe_draw_line(img, start, finish, 0x000000FF);
 }
@@ -45,11 +45,11 @@ void	draw_view_angle(t_player player, int tile_size, t_img *img)
 int	sc_main_update(t_sc_main *sc)
 {
 	// Erase the window;
-	// bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
-	draw_map(sc->game->map, (t_point){0}, (t_point){20, 20}, sc->scene.img);
-	draw_player(sc->game->player, 20, sc->scene.img);
-	draw_view_angle(sc->game->player, 20, sc->scene.img);
+	bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
+	draw_map(sc->game->map, (t_point){0}, (t_point){40, 40}, sc->scene.img);
+	draw_player(sc->game->player, 40, sc->scene.img);
+	draw_view_angle(sc->game->player, 40, sc->scene.img);
 	sc->game->player.view_angle -= 0.01;
-	ft_printf("fps: %d\n", sc->sfe->fps);
+	// ft_printf("fps: %d\n", sc->sfe->fps);
 	return (sc->running);
 }
