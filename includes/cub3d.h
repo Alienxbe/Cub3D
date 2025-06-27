@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/03/12 08:11:34 by marykman         ###   ########.fr       */
+/*   Updated: 2025/06/27 17:29:51 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D
 # define CUB3D
 
-# include "ft_colors.h"
+# include "t_color.h"
+# include "ft_point.h"
+# include "t_img.h"
 
 /* Enum */
 
@@ -25,6 +27,18 @@ typedef enum e_cardinal_dir
 	WEST,
 	CARDINAL_MAX
 }	t_cardinal_dir;
+
+typedef enum e_map_tile
+{
+	TILE_FLOOR = 0,
+	TILE_WALL = 1,
+	TILE_N = 2,
+	TILE_S = 3,
+	TILE_E = 4,
+	TILE_W = 5,
+	TILE_EMPTY = 6,
+	TILE_TERM = 7
+}	t_map_tile;
 
 /* Structures */
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marykman <marykman@student.42.fr>          +#+  +:+       +#+         #
+#    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/03/12 07:01:19 by marykman         ###   ########.fr        #
+#    Updated: 2025/06/27 02:03:20 by cproust          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,13 +76,21 @@ FILES_SC_MAIN		:=	init.c \
 						update.c \
 						destroy.c
 
+FILES_PARSING		:=	parse_line.c \
+						init_map.c \
+						utils.c \
+						errors.c \
+
 SRCS				:=	$(addprefix srcs/, ${FILES})
 SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
+SRCS				+=	$(addprefix srcs/parsing/, ${FILES_PARSING})
 OBJS				:=	$(patsubst srcs%.c, objs%.o, ${SRCS})
 
 # header files
 FILES				:=	cub3d.h \
-						sc_main.h
+						sc_main.h \
+						parsing.h \
+						
 HEADERS				:=	$(addprefix includes/, ${FILES});
 
 # -----------------------------------Rules-------------------------------------
