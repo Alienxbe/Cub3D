@@ -6,7 +6,7 @@
 #    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/06/27 02:03:20 by cproust          ###   ########.fr        #
+#    Updated: 2025/07/02 16:12:45 by cproust          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ FILES_PARSING		:=	parse_line.c \
 						init_map.c \
 						utils.c \
 						errors.c \
+						check_map.c \
 
 SRCS				:=	$(addprefix srcs/, ${FILES})
 SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})

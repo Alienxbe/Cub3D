@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/06/27 17:15:59 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/02 17:45:12 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	parse_line(char *line, t_map *map, int *line_c)
 	if (ft_str_is_empty(line) && map->map == NULL)
 		return (0);
 	if (ft_str_is_empty(line) && map->map != NULL)
-		return (ft_printf("Error: Invalid map"), 1);
+		return (ft_printf("Error: Invalid map\n"), -1);
 	else if (ft_strstartwith(line, "NO "))
 		return ((*line_c)++, parse_wall_text(line + 3, &map->wall_text[NORTH]));
 	else if (ft_strstartwith(line, "SO "))

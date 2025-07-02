@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/06/27 16:10:33 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/02 16:13:59 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ int	main(int argc, char **argv)
 
 	// TODO: Parsing
 	game.map = init_map(argv[1]);
-	
+	if (check_map(game.map) != 0)
+	{
+		ft_printf("Error: Invalid map\n");
+		free_arr((void **)game.map.map);
+		return (EXIT_FAILURE);
+	}
+	else
+		ft_printf("Map loaded successfully\n");
 	sfe = sfe_init("Cub3D", (t_point){700, 700});
 	sfe_set_max_fps(sfe, 120);
 

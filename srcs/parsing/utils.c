@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:33:20 by cproust           #+#    #+#             */
-/*   Updated: 2025/06/27 17:28:32 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/02 17:48:18 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int	ft_realloc_map(char *line, t_map *map)
 	while (++i < map->size.y)
 		new_map[i] = map->map[i];
 	new_map[i] = line_to_int_arr(line, map);
+	if (!new_map[i])
+		return (free(new_map), 0);
 	new_map[new_size] = NULL;
 	free(map->map);
 	map->map = new_map;
@@ -108,4 +110,3 @@ int	ft_realloc_map(char *line, t_map *map)
 		map->size.x = ft_strlen(line);
 	return (1);
 }
-

@@ -6,11 +6,38 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/06/27 17:12:17 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/02 17:30:35 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+void square_map(t_map *map)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	*new_line;
+
+	i = -1;
+	while (map->map[++i])
+	{
+		j = 0;
+		k = -1;
+		while (map->map[i][j] != TILE_TERM)
+			j++;
+		new_line = malloc(sizeof(int) * (map->size.x + 1));
+		if (!new_line)
+			return ;
+		while (++k < j)
+			new_line[k] = map->map[i][k];
+		while (k < map->size.x)
+			new_line[k++] = TILE_EMPTY;
+		new_line[map->size.x] = TILE_TERM;
+		free(map->map[i]);
+		map->map[i] = new_line;
+	}
+}
 
 void	print_map_struct(t_map *map)
 {
@@ -65,7 +92,6 @@ static	int	parse_file(const char *path, t_map *map)
 			return (free(line), 0);
 		}
 		free(line);
-
 	}
 	free(line);
 	if (close(fd) < 0)
@@ -97,6 +123,7 @@ t_map	init_map(char *path)
 			exit(1);
 		}
 	}
+	square_map(&map);
 	print_map_struct(&map);
 	return (map);
 }
