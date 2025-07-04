@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/06/27 17:29:51 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/03 09:01:22 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef enum e_map_tile
 	TILE_E = 4,
 	TILE_W = 5,
 	TILE_EMPTY = 6,
-	TILE_TERM = 7
+	TILE_TERM = 7,
+	TILE_SPRITE = 8,
+	TILE_DOOR = 9,
 }	t_map_tile;
 
 /* Structures */
@@ -51,6 +53,8 @@ typedef struct s_map
 	t_color			ceiling_col;	// t_color est juste un unsigned int (#AA RR GG BB)
 	t_color			floor_col;
 	char			*wall_text[CARDINAL_MAX];
+	char			*door_text;
+	char			*sprite_text;
 }	t_map;
 
 typedef struct s_player

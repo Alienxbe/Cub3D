@@ -6,13 +6,13 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/07/02 17:30:35 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/04 16:23:27 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void square_map(t_map *map)
+void	square_map(t_map *map)
 {
 	int	i;
 	int	j;
@@ -88,7 +88,6 @@ static	int	parse_file(const char *path, t_map *map)
 		if (ret < 0)
 		{
 			close(fd);
-			ft_printf("Error: Failed to parse line '%s'\n", line);
 			return (free(line), 0);
 		}
 		free(line);
@@ -118,12 +117,9 @@ t_map	init_map(char *path)
 	if (path)
 	{
 		if (!parse_file(path, &map))
-		{
-			ft_printf("Error: Failed to parse file '%s'\n", path);
 			exit(1);
-		}
+		square_map(&map);
+		print_map_struct(&map);
 	}
-	square_map(&map);
-	print_map_struct(&map);
 	return (map);
 }

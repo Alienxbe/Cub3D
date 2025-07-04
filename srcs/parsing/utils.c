@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:33:20 by cproust           #+#    #+#             */
-/*   Updated: 2025/07/02 17:48:18 by cproust          ###   ########.fr       */
+/*   Updated: 2025/07/04 13:08:49 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ static void	char_to_tile(char c, int *tile)
 		*tile = TILE_E;
 	else if (c == 'W')
 		*tile = TILE_W;
-	else if (c == ' ')
+	else if (c == ' ' || c == '\t')
 		*tile = TILE_EMPTY;
+	else if (c == 'D')
+		*tile = TILE_DOOR;
+	else if (c == 'B')
+		*tile = TILE_SPRITE;
 }
 
 static int	*line_to_int_arr(char *line, t_map *map)
