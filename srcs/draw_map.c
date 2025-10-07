@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 06:50:17 by marykman          #+#    #+#             */
-/*   Updated: 2025/03/12 08:29:54 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/06 23:55:07 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,25 @@ void	draw_map(t_map map, t_point pos, t_point tile_size, t_img *img)
 		0x00FFFFFF
 	);	// Draw background
 	for (int y = 0; y < map.size.y; y++)
+	{
 		for (int x = 0; x < map.size.x; x++)
-			if (map.map[y][x])
+		{
+			if (map.map[y][x] == 1)
 				sfe_pixel_fill(
 					img, 
 					(t_area){
 						{x * tile_size.x, y * tile_size.y},
 						{(x + 1) * tile_size.x, (y + 1) * tile_size.y}
 					}, 0x00008800); // Drawing case
+			else if (map.map[y][x] == 6)
+				sfe_pixel_fill(
+					img, 
+					(t_area){
+						{x * tile_size.x, y * tile_size.y},
+						{(x + 1) * tile_size.x, (y + 1) * tile_size.y}
+					}, 0x00000000); // Drawing case
+		}
+	}
 	for (int y = 1; y <= map.size.y; y++)
 		sfe_draw_line(img, (t_point){pos.x, pos.y + y * tile_size.y}, (t_point){pos.x + tile_size.x * map.size.x, pos.y + y * tile_size.y}, grid_col);
 	for (int x = 1; x <= map.size.x; x++)

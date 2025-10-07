@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/06/27 16:10:33 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/07 01:06:03 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "sfe.h"
 #include "sfe_pixel.h"
 #include "sc_main.h"
-#include "cub3d.h"
 #include "parsing.h"
+#include "events.h"
+#include "cub3d.h"
 
 int	main(int argc, char **argv)
 {
@@ -31,7 +32,7 @@ int	main(int argc, char **argv)
 	// TODO: Parsing
 	game.map = init_map(argv[1]);
 	
-	sfe = sfe_init("Cub3D", (t_point){700, 700});
+	sfe = sfe_init("Cub3D", (t_point){1080, 720});
 	sfe_set_max_fps(sfe, 120);
 
 	sc.scene = sfe_new_scene(sfe, &sc);
@@ -42,25 +43,8 @@ int	main(int argc, char **argv)
 
 	sc.game = &game;
 
-	game.map.map = (int *[]){
-		(int []){1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		(int []){1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	};
-	game.map.size = (t_point){13, 14};
-
 	sfe_set_active_scene(sfe, &sc.scene);
+	events_init(sfe, &sc);
 	sfe_loop(sfe);
 	return (EXIT_SUCCESS);
 }

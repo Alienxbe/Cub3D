@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
+#    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/06/27 02:03:20 by cproust          ###   ########.fr        #
+#    Updated: 2025/10/07 00:55:46 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,11 @@ NAME				:=	cub3d
 FILES				:=	main.c \
 						draw_line.c \
 						draw_map.c
+FILES_EVENTS		:=	convert.c \
+						events.c
 FILES_SC_MAIN		:=	init.c \
 						update.c \
+						draw.c \
 						destroy.c
 
 FILES_PARSING		:=	parse_line.c \
@@ -82,6 +85,7 @@ FILES_PARSING		:=	parse_line.c \
 						errors.c \
 
 SRCS				:=	$(addprefix srcs/, ${FILES})
+SRCS				+=	$(addprefix srcs/events/, ${FILES_EVENTS})
 SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
 SRCS				+=	$(addprefix srcs/parsing/, ${FILES_PARSING})
 OBJS				:=	$(patsubst srcs%.c, objs%.o, ${SRCS})

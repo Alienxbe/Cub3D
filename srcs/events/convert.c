@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 00:55:10 by marykman         ###   ########.fr       */
+/*   Created: 2023/12/18 18:13:05 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/07 00:35:45 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_memory.h"
-#include "t_sfe.h"
-#include "sc_main.h"
+#include <stddef.h>
+#include "sfe_event.h"
+#include "events.h"
 
-
-void	main_update(t_sc_main *sc)
+t_game_keys	sfe_to_game_key(t_sfe_keys key)
 {
-	(void)sc;
-}
+	static t_sfe_keys	keybind[] = {
+		SFE_KEY_A,
+		SFE_KEY_D,
+		SFE_KEY_W,
+		SFE_KEY_S,
+		SFE_KEY_LEFT,
+		SFE_KEY_RIGHT
+	};
+	t_game_keys			i;
 
-int	sc_main_update(t_sc_main *sc)
-{
-	ft_bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
-	main_update(sc);
-	main_draw(sc);
-	return (sc->running);
+	i = -1;
+	while (++i < GAME_KEY_LEN)
+		if (keybind[i] == key)
+			return (i);
+	return (GAME_KEY_LEN);
 }

@@ -12,6 +12,7 @@
 		"ft_memory.h": "c",
 		"get_next_line.h": "c",
 		"ft_colors.h": "c",
-		"t_img.h": "c"
+		"t_img.h": "c",
+		"minimap.h": "c"
 	}
 }

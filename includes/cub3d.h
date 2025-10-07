@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/06/27 17:29:51 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/07 01:14:55 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include "t_color.h"
 # include "ft_point.h"
 # include "t_img.h"
+# include "events.h"
+
+/* Defines */
+
+# define CELL_SIZE	32
 
 /* Enum */
 
@@ -53,6 +58,14 @@ typedef struct s_map
 	char			*wall_text[CARDINAL_MAX];
 }	t_map;
 
+typedef struct s_minimap
+{
+	t_point	size;
+	float	zoom;
+	t_bool	show;
+}	t_minimap;
+
+
 typedef struct s_player
 {
 	t_fpoint	pos;
@@ -65,6 +78,7 @@ typedef struct s_game
 	t_bool		*running;
 	t_map		map;
 	t_player	player;
+	t_bool		active_keys[GAME_KEY_LEN];
 }	t_game;
 
 void	draw_map(t_map map, t_point pos, t_point tile_size, t_img *img);

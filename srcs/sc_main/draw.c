@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 00:55:10 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/07 00:46:41 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/07 00:55:18 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_memory.h"
-#include "t_sfe.h"
 #include "sc_main.h"
 
-
-void	main_update(t_sc_main *sc)
+void	main_draw(t_sc_main *sc)
 {
 	(void)sc;
-}
-
-int	sc_main_update(t_sc_main *sc)
-{
-	ft_bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
-	main_update(sc);
-	main_draw(sc);
-	return (sc->running);
 }

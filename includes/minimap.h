@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   minimap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 00:55:10 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/07 01:00:06 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/07 01:13:01 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_memory.h"
-#include "t_sfe.h"
-#include "sc_main.h"
+#ifndef MINIMAP_H
+# define MINIMAP_H
 
+# include "cub3d.h"
 
-void	main_update(t_sc_main *sc)
-{
-	(void)sc;
-}
+void	minimap_init(t_game *game);
+void	minimap_update(t_game *game);
+void	minimap_draw(t_game *game, t_img *img);
 
-int	sc_main_update(t_sc_main *sc)
-{
-	ft_bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
-	main_update(sc);
-	main_draw(sc);
-	return (sc->running);
-}
+#endif
