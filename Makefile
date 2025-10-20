@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/07 00:55:46 by marykman         ###   ########.fr        #
+#    Updated: 2025/10/20 16:29:36 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,26 +74,37 @@ FILES				:=	main.c \
 						draw_map.c
 FILES_EVENTS		:=	convert.c \
 						events.c
+FILES_MINIMAP		:=	init.c \
+						update.c \
+						draw.c
+FILES_PARSING		:=	parse_line.c \
+						init_map.c \
+						utils.c \
+						errors.c
+FILES_PLAYER		:=	init.c \
+						update.c \
+						draw.c
 FILES_SC_MAIN		:=	init.c \
 						update.c \
 						draw.c \
 						destroy.c
 
-FILES_PARSING		:=	parse_line.c \
-						init_map.c \
-						utils.c \
-						errors.c \
-
 SRCS				:=	$(addprefix srcs/, ${FILES})
 SRCS				+=	$(addprefix srcs/events/, ${FILES_EVENTS})
-SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
+SRCS				+=	$(addprefix srcs/minimap/, ${FILES_MINIMAP})
 SRCS				+=	$(addprefix srcs/parsing/, ${FILES_PARSING})
+SRCS				+=	$(addprefix srcs/player/, ${FILES_PLAYER})
+SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
 OBJS				:=	$(patsubst srcs%.c, objs%.o, ${SRCS})
 
 # header files
 FILES				:=	cub3d.h \
-						sc_main.h \
+						events.h \
+						minimap.h \
 						parsing.h \
+						player.h \
+						sc_main.h
+
 						
 HEADERS				:=	$(addprefix includes/, ${FILES});
 

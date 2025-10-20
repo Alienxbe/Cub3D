@@ -6,24 +6,25 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 00:55:10 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:25:52 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_memory.h"
-#include "t_sfe.h"
+#include "minimap.h"
+#include "player.h"
 #include "sc_main.h"
-
+#include <stdio.h>
 
 void	main_update(t_sc_main *sc)
 {
-	(void)sc;
+	minimap_update(sc->game);
+	player_update(sc->game);
 }
 
 int	sc_main_update(t_sc_main *sc)
 {
-	ft_bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
 	main_update(sc);
 	main_draw(sc);
+	// printf("fps: %d\n", sc->sfe->fps);
 	return (sc->running);
 }

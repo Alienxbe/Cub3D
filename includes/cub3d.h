@@ -6,21 +6,32 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 01:14:55 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:53:08 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D
 # define CUB3D
 
+# include "math.h"
 # include "t_color.h"
 # include "ft_point.h"
+# include "ft_area.h"
 # include "t_img.h"
 # include "events.h"
 
 /* Defines */
 
+# define WIN_NAME	"Cub3D"
+# define WIN_WIDTH	1080
+# define WIN_HEIGHT	720
+# define TARGET_FPS	120
+
 # define CELL_SIZE	32
+
+// # ifndef M_PI
+// #  define M_PI		3.1415
+// # endif
 
 /* Enum */
 
@@ -60,15 +71,20 @@ typedef struct s_map
 
 typedef struct s_minimap
 {
-	t_point	size;
-	float	zoom;
+	int		cell_size;
+	// BONUS: Center on player
+	// BONUS: Allow rotations
 	t_bool	show;
 }	t_minimap;
 
 
 typedef struct s_player
 {
-	t_fpoint	pos;
+	t_point		pos;
+	t_point		spd;
+	t_fpoint	step;
+	t_fpoint	step_left;
+	t_area		hitbox;
 	float		view_angle;	// rad
 }	t_player;
 
@@ -78,6 +94,7 @@ typedef struct s_game
 	t_bool		*running;
 	t_map		map;
 	t_player	player;
+	t_minimap	minimap;
 	t_bool		active_keys[GAME_KEY_LEN];
 }	t_game;
 

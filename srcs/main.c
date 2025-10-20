@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/07 01:06:03 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/17 03:29:22 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ int	main(int argc, char **argv)
 	game = (t_game){0};
 	sc = (t_sc_main){0};
 
-	// TODO: Parsing
 	game.map = init_map(argv[1]);
 	
-	sfe = sfe_init("Cub3D", (t_point){1080, 720});
-	sfe_set_max_fps(sfe, 120);
+	sfe = sfe_init(WIN_NAME, (t_point){WIN_WIDTH, WIN_HEIGHT});
+	sfe_set_max_fps(sfe, TARGET_FPS);
 
 	sc.scene = sfe_new_scene(sfe, &sc);
 	sc.scene.f_init = &sc_main_init;

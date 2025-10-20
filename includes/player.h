@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.h                                          :+:      :+:    :+:   */
+/*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 01:00:06 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 14:14:57 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/20 14:53:49 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/20 16:31:18 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIMAP_H
-# define MINIMAP_H
+#ifndef PLAYER_H
+# define PLAYER_H
 
 # include "cub3d.h"
 
-# define MINIMAP_DEFAULT_SHOW			true
+# define PLAYER_ROTATION_SPEED	0.05
+# define PLAYER_SPEED			3
 
-void	minimap_init(t_game *game);
-void	minimap_update(t_game *game);
-void	minimap_draw(t_game *game, t_img *img);
+void	player_init(t_game *game);
+void	player_update(t_game *game);
+void	player_draw(t_game *game, t_img *img);
 
 #endif
