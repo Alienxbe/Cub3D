@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
+#    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/20 16:29:36 by marykman         ###   ########.fr        #
+#    Updated: 2025/10/21 18:30:45 by cproust          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ FILES_PARSING		:=	parse_line.c \
 						errors.c
 FILES_PLAYER		:=	init.c \
 						update.c \
-						draw.c
+						draw.c \
+						raycast.c
 FILES_SC_MAIN		:=	init.c \
 						update.c \
 						draw.c \

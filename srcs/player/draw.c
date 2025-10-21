@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 17:32:12 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:39:57 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define PLAYER_FOV (M_PI / 3)
+#define RAY_COUNT 120
 
 #include "sfe_pixel.h"
 #include "player.h"
@@ -22,18 +25,41 @@ static t_point	world_to_minimap(t_game *game, t_point p)
 	return ((t_point){p.x * scale, p.y * scale});
 }
 
-static void	draw_vision(t_game *game, t_img *img, t_point player_pos)
+static void	draw_ray(t_game *game, t_img *img, t_point player_pos, float angle)
 {
-	t_point	end;
+	t_ray		ray;
+	t_fpoint	dir;
+	t_point		end;
 
-	end = ft_fpoint_to_point((t_fpoint){game->player.step.x * 40, game->player.step.y * 40});
-	// printf("end: %d %d\n", end.x, end.y);
-	sfe_draw_line(img,
-		player_pos,
-		add_point(player_pos, world_to_minimap(game, end)),
-		0x0
-	);
+	dir.x = cos(angle);
+	dir.y = sin(angle);
+
+	ray = raycast(game, dir, game->player.pos);
+	end.x = ray.hit.x;
+	end.y = ray.hit.y;
+
+	sfe_draw_line(img, player_pos, world_to_minimap(game, end), 0x0);
 }
+
+void	draw_vision(t_game *game, t_img *img, t_point player_pos)
+{
+	float	start_angle;
+	float	end_angle;
+	float	angle_step;
+	float	current_angle;
+
+	start_angle = game->player.view_angle - (PLAYER_FOV / 2);
+	end_angle = game->player.view_angle + (PLAYER_FOV / 2);
+	angle_step = PLAYER_FOV / (float)RAY_COUNT;
+
+	current_angle = start_angle;
+	while (current_angle <= end_angle)
+	{
+		draw_ray(game, img, player_pos, current_angle);
+		current_angle += angle_step;
+	}
+}
+
 
 void	player_draw(t_game *game, t_img *img)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:49 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 16:31:18 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/21 18:39:21 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 void	player_init(t_game *game);
 void	player_update(t_game *game);
 void	player_draw(t_game *game, t_img *img);
+t_ray	raycast(t_game *game, t_fpoint dir, t_point player_pos);
 
 #endif
