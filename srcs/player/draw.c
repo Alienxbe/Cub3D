@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/21 18:39:57 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/21 18:54:11 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static void	draw_ray(t_game *game, t_img *img, t_point player_pos, float angle)
 	dir.y = sin(angle);
 
 	ray = raycast(game, dir, game->player.pos);
+	// Ici, selon les infos de raycast on peut savoir quelle texture afficher.
+	// ray.side == 0 && ray.step_x > 0 : WEST
+	// ray.side == 0 && ray.step_x < 0 : EAST
+	// ray.side == 1 && ray.step_y > 0 : NORTH
+	// ray.side == 1 && ray.step_y < 0 : SOUTH
 	end.x = ray.hit.x;
 	end.y = ray.hit.y;
 

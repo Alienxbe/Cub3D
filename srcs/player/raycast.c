@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 04:29:59 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/21 18:37:40 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/21 18:47:23 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 
 #define PLAYER_FOV (M_PI / 3)   // 60° field of view
 #define RAY_COUNT 10           // 60 lines to draw
-
-static t_point	world_to_minimap(t_game *game, t_point p)
-{
-	double	scale;
-
-	scale = (double)game->minimap.cell_size / CELL_SIZE;
-	return ((t_point){p.x * scale, p.y * scale});
-}
 
 static t_ray	dda_loop(t_game *game, t_ray ray)
 {
@@ -81,21 +73,21 @@ static t_ray	do_dda(t_game *game, t_ray ray, t_fpoint pos)
 
 t_ray	raycast(t_game *game, t_fpoint dir, t_point player_pos)
 {
-	t_ray	ray;
-	t_fpoint pos = { player_pos.x, player_pos.y };
+	t_ray		ray;
+	t_fpoint	pos;
 
+	pos.x = (float)(player_pos.x);
+	pos.y = (float)(player_pos.y);
 	ray.dir = dir;
 	ray.map_x = (int)(pos.x / CELL_SIZE);
 	ray.map_y = (int)(pos.y / CELL_SIZE);
 
+	ray.step_x = 1;
 	if (dir.x < 0)
 		ray.step_x = -1;
-	else
-		ray.step_x = 1;
+	ray.step_y = 1;
 	if (dir.y < 0)
 		ray.step_y = -1;
-	else
-		ray.step_y = 1;
 	ray = do_dda(game, ray, pos);
 	if (ray.side == 0)
 		ray.perp_dist = ray.c_dist_x - ray.delta_x;
@@ -105,20 +97,4 @@ t_ray	raycast(t_game *game, t_fpoint dir, t_point player_pos)
 	ray.hit.y = pos.y + ray.dir.y * ray.perp_dist * CELL_SIZE;
 
 	return (ray);
-}
-
-void	draw_ray(t_game *game, t_img *img, t_point player_pos, float angle)
-{
-	t_ray		ray;
-	t_fpoint	dir;
-	t_point		end;
-
-	dir.x = cos(angle);
-	dir.y = sin(angle);
-
-	ray = raycast(game, dir, game->player.pos);
-	end.x = ray.hit.x;
-	end.y = ray.hit.y;
-
-	sfe_draw_line(img, player_pos, world_to_minimap(game, end), 0x0);
 }
