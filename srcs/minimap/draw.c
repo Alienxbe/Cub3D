@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 09:41:52 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 15:49:03 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:12:38 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	draw_walls(t_game *game, t_img *img)
 		while (x < game->map.size.x && game->map.map[y][x] != TILE_TERM)
 		{
 			if (game->map.map[y][x] == TILE_WALL)
-				draw_tile(game, img, (t_point){x, y}, 0x212121);
+				draw_tile(game, img, (t_point){x, y}, MINIMAP_TILE_WALL_COLOR);
 			else if (game->map.map[y][x] == TILE_FLOOR)
-				draw_tile(game, img, (t_point){x, y}, 0xFFFFFF);
+				draw_tile(game, img, (t_point){x, y}, MINIMAP_TILE_FLOOR_COLOR);
 			x++;
 		};
 		y++;
@@ -71,6 +71,8 @@ void	draw_walls(t_game *game, t_img *img)
 
 void	minimap_draw(t_game *game, t_img *img)
 {
+	if (!game->minimap.show)
+		return ;
 	draw_walls(game, img);
 	draw_grid(game, img);
 }

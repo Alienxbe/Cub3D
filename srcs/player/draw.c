@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 17:32:12 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/21 14:00:44 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	draw_vision(t_game *game, t_img *img, t_point player_pos)
 	sfe_draw_line(img,
 		player_pos,
 		add_point(player_pos, world_to_minimap(game, end)),
-		0x0
+		PLAYER_MINIMAP_RAY_COLOR
 	);
 }
 
@@ -40,7 +40,7 @@ void	player_draw(t_game *game, t_img *img)
 	t_point	pos;
 	t_area	hitbox;
 
-	pos = world_to_minimap(game, game->player.pos);
+	pos = world_to_minimap(game, ft_fpoint_to_point(game->player.pos));
 	hitbox.p1 = world_to_minimap(game, game->player.hitbox.p1);
 	hitbox.p2 = world_to_minimap(game, game->player.hitbox.p2);
 	sfe_pixel_fill(
@@ -48,7 +48,7 @@ void	player_draw(t_game *game, t_img *img)
 		(t_area){
 			add_point(pos, hitbox.p1),
 			add_point(pos, hitbox.p2)
-		}, 0xFF0000
+		}, PLAYER_MINIMAP_COLOR
 	);
 	draw_vision(game, img, pos);
 }

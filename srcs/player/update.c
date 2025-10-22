@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:38 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 17:34:15 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:59:25 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,32 @@ static void	update_rotation(t_player *player, float speed)
 
 void	player_update(t_game *game)
 {
-	game->player.spd = (t_point){0};
+	game->player.spd = (t_fpoint){0};
 	if (game->active_keys[GAME_KEY_VIEW_LEFT])
-		update_rotation(&game->player, PLAYER_ROTATION_SPEED);
-	if (game->active_keys[GAME_KEY_VIEW_RIGHT])
 		update_rotation(&game->player, -PLAYER_ROTATION_SPEED);
+	if (game->active_keys[GAME_KEY_VIEW_RIGHT])
+		update_rotation(&game->player, PLAYER_ROTATION_SPEED);
 	if (game->active_keys[GAME_KEY_FORWARD])
 	{
-		game->player.spd.x = game->player.step.x * PLAYER_SPEED;
-		game->player.spd.y = game->player.step.y * PLAYER_SPEED;
+		game->player.spd.x += game->player.step.x;
+		game->player.spd.y += game->player.step.y;
 	}
 	if (game->active_keys[GAME_KEY_BACKWARD])
 	{
-		game->player.spd.x = -game->player.step.x * PLAYER_SPEED;
-		game->player.spd.y = -game->player.step.y * PLAYER_SPEED;
+		game->player.spd.x += -game->player.step.x;
+		game->player.spd.y += -game->player.step.y;
 	}
 	if (game->active_keys[GAME_KEY_LEFT])
 	{
-		game->player.spd.x = -game->player.step.x * PLAYER_SPEED;
-		game->player.spd.y = game->player.step.y * PLAYER_SPEED;
+		game->player.spd.x += game->player.step.y;
+		game->player.spd.y += -game->player.step.x;
 	}
 	if (game->active_keys[GAME_KEY_RIGHT])
 	{
-		game->player.spd.x = game->player.step.x * PLAYER_SPEED;
-		game->player.spd.y = -game->player.step.y * PLAYER_SPEED;
+		game->player.spd.x += -game->player.step.y;
+		game->player.spd.y += game->player.step.x;
 	}
-	game->player.pos = add_point(game->player.pos, game->player.spd);
+	game->player.spd.x *= PLAYER_SPEED;
+	game->player.spd.y *= PLAYER_SPEED;
+	player_move(game);
 }

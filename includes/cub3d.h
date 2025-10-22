@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 16:53:08 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:26:09 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 
 # define CELL_SIZE	32
 
-// # ifndef M_PI
-// #  define M_PI		3.1415
-// # endif
+# ifndef M_PI
+#  define M_PI		3.1415
+# endif
 
 /* Enum */
 
@@ -80,8 +80,8 @@ typedef struct s_minimap
 
 typedef struct s_player
 {
-	t_point		pos;
-	t_point		spd;
+	t_fpoint	pos;
+	t_fpoint	spd;
 	t_fpoint	step;
 	t_fpoint	step_left;
 	t_area		hitbox;

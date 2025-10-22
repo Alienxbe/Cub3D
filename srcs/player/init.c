@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:52:03 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/20 16:47:44 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/22 17:30:28 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ t_point	get_map_pos(t_map *map)
 	return (i);
 }
 
-int	get_view_angle(int tile)
+float	get_view_angle(int tile)
 {
 	if (tile == TILE_N)
-		return (M_PI / 2);
-	else if (tile == TILE_S)
 		return (3 * (M_PI / 2));
+	else if (tile == TILE_S)
+		return (M_PI / 2);
 	else if (tile == TILE_E)
-		return (2 * M_PI);
-	return (M_PI);
+		return (M_PI);
+	return (2* M_PI);
 }
 
 void	player_init(t_game *game)

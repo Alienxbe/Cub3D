@@ -13,6 +13,7 @@
 		"get_next_line.h": "c",
 		"ft_colors.h": "c",
 		"t_img.h": "c",
-		"minimap.h": "c"
+		"minimap.h": "c",
+		"player.h": "c"
 	}
 }
