@@ -6,7 +6,7 @@
 #    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/21 18:30:45 by cproust          ###   ########.fr        #
+#    Updated: 2025/10/22 18:12:37 by cproust          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ endif
 # ---------------------------------Compilation---------------------------------
 
 CC					:=	@gcc
-CFLAGS				:=	-Wall -Wextra -Werror
+CFLAGS				:=
 
 ifeq ($(detected_OS), Linux)
 	MLXFLAGS		:=	-lXext -lX11 -lm -lz
@@ -83,8 +83,9 @@ FILES_PARSING		:=	parse_line.c \
 						errors.c
 FILES_PLAYER		:=	init.c \
 						update.c \
-						draw.c \
-						raycast.c
+						draw.c
+FILES_RAYCAST		:=	draw.c \
+						raycast.c 
 FILES_SC_MAIN		:=	init.c \
 						update.c \
 						draw.c \
@@ -95,6 +96,7 @@ SRCS				+=	$(addprefix srcs/events/, ${FILES_EVENTS})
 SRCS				+=	$(addprefix srcs/minimap/, ${FILES_MINIMAP})
 SRCS				+=	$(addprefix srcs/parsing/, ${FILES_PARSING})
 SRCS				+=	$(addprefix srcs/player/, ${FILES_PLAYER})
+SRCS				+=	$(addprefix srcs/raycast/, ${FILES_RAYCAST})
 SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
 OBJS				:=	$(patsubst srcs%.c, objs%.o, ${SRCS})
 
@@ -104,7 +106,8 @@ FILES				:=	cub3d.h \
 						minimap.h \
 						parsing.h \
 						player.h \
-						sc_main.h
+						sc_main.h \
+						raycast.h
 
 						
 HEADERS				:=	$(addprefix includes/, ${FILES});

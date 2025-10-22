@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 00:46:41 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/22 18:18:23 by cproust          ###   ########.fr       */
+/*   Created: 2025/10/20 14:53:49 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/22 18:15:02 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sfe_scene.h"
-#include "minimap.h"
-#include "player.h"
-#include "sc_main.h"
-#include "raycast.h"
+#ifndef RAYCAST_H
+# define RAYCAST_H
 
-void	main_draw(t_sc_main *sc)
-{
-	// ft_bzero(sc->scene.img->addr, sc->scene.img->size.x * sc->scene.img->size.y * sizeof(t_color));
-	// sfe_scene_setbg(sc->scene, 0x60AFAF);
-	//minimap_draw(sc->game, sc->scene.img);
-	//player_draw(sc->game, sc->scene.img);
-	raycast_draw(sc->game, sc->scene.img);
-}
+# include "cub3d.h"
+
+t_ray	raycast(t_game *game, t_point player_pos, t_ray ray, int i);
+void	raycast_draw(t_game *game, t_img *img);
+
+#endif

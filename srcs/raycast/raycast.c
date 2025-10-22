@@ -6,16 +6,13 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 04:29:59 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/21 18:47:23 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/22 18:15:06 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sfe_pixel.h"
 #include "player.h"
 #include <stdio.h>
-
-#define PLAYER_FOV (M_PI / 3)   // 60° field of view
-#define RAY_COUNT 10           // 60 lines to draw
 
 static t_ray	dda_loop(t_game *game, t_ray ray)
 {
@@ -52,11 +49,11 @@ static t_ray	do_dda(t_game *game, t_ray ray, t_fpoint pos)
 
 	c_s = CELL_SIZE;
 	if (ray.dir.x == 0)
-		ray.delta_x = 1e30;
+		ray.delta_x = 1e10;
 	else
 		ray.delta_x = fabs(1.0 / ray.dir.x);
 	if (ray.dir.y == 0)
-		ray.delta_y = 1e30;
+		ray.delta_y = 1e10;
 	else
 		ray.delta_y = fabs(1.0 / ray.dir.y);
 	if (ray.step_x < 0)
@@ -71,22 +68,20 @@ static t_ray	do_dda(t_game *game, t_ray ray, t_fpoint pos)
 	return (ray);
 }
 
-t_ray	raycast(t_game *game, t_fpoint dir, t_point player_pos)
+t_ray	raycast(t_game *game, t_point player_pos, t_ray ray)
 {
-	t_ray		ray;
 	t_fpoint	pos;
 
 	pos.x = (float)(player_pos.x);
 	pos.y = (float)(player_pos.y);
-	ray.dir = dir;
 	ray.map_x = (int)(pos.x / CELL_SIZE);
 	ray.map_y = (int)(pos.y / CELL_SIZE);
 
 	ray.step_x = 1;
-	if (dir.x < 0)
+	if (ray.dir.x < 0)
 		ray.step_x = -1;
 	ray.step_y = 1;
-	if (dir.y < 0)
+	if (ray.dir.y < 0)
 		ray.step_y = -1;
 	ray = do_dda(game, ray, pos);
 	if (ray.side == 0)
