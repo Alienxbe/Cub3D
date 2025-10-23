@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 11:37:30 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:44:44 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,14 @@ void	raycast_draw(t_game *game, t_img *img)
 	float		angle_step;
 
 	angle_step = (PLAYER_FOV / (float)WIN_WIDTH);
-	ray.angle = game->player.view_angle - (PLAYER_FOV/ 2);
+	ray.angle = game->player.view_angle + (PLAYER_FOV/ 2);
 	i = 0;
 	while (i <= WIN_WIDTH)
 	{
 		ray.dir.x = cos(ray.angle);
 		ray.dir.y = sin(ray.angle);
 		draw_ray(game, img, ray, i);
-		ray.angle += angle_step;
+		ray.angle -= angle_step;
 		i++;
 	}
 }
