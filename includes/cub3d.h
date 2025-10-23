@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/21 13:26:09 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:48:47 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,23 @@ typedef struct s_game
 	t_minimap	minimap;
 	t_bool		active_keys[GAME_KEY_LEN];
 }	t_game;
+
+typedef struct s_ray
+{
+	t_fpoint	dir;
+	t_point		hit;
+	float		angle;
+	int			map_x;
+	int			map_y;
+	double		delta_x;
+	double		delta_y;
+	double		c_dist_x;
+	double		c_dist_y;
+	int			side;
+	int			step_x;
+	int			step_y;
+	double		perp_dist;
+}	t_ray;
 
 void	draw_map(t_map map, t_point pos, t_point tile_size, t_img *img);
 

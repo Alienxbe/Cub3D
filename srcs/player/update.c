@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:38 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/22 17:59:25 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:50:27 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	update_rotation(t_player *player, float speed)
 	if (player->view_angle > 2 * M_PI)
 		player->view_angle -= 2 * M_PI;
 	update_steps(player);
-	printf("steps: %f %f\n", player->step.x, player->step.y);
 }
 
 void	player_update(t_game *game)
