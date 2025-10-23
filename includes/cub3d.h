@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/21 17:46:10 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:07:27 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_ray
 {
 	t_fpoint	dir;
 	t_point		hit;
+	float		angle;
 	int			map_x;
 	int			map_y;
 	double		delta_x;

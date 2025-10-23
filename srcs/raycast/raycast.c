@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 04:29:59 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/22 18:15:06 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 11:34:44 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ t_ray	raycast(t_game *game, t_point player_pos, t_ray ray)
 		ray.step_y = -1;
 	ray = do_dda(game, ray, pos);
 	if (ray.side == 0)
-		ray.perp_dist = ray.c_dist_x - ray.delta_x;
+		ray.perp_dist = ray.c_dist_x;
 	else
-		ray.perp_dist = ray.c_dist_y - ray.delta_y;
+		ray.perp_dist = ray.c_dist_y;
 	ray.hit.x = pos.x + ray.dir.x * ray.perp_dist * CELL_SIZE;
 	ray.hit.y = pos.y + ray.dir.y * ray.perp_dist * CELL_SIZE;
 
