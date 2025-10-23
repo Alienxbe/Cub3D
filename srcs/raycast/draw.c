@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 14:35:27 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:54:54 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "sfe_pixel.h"
 #include "player.h"
 #include "raycast.h"
-#include <stdio.h>
 
 static t_point	world_to_minimap(t_game *game, t_point p)
 {
@@ -24,58 +23,43 @@ static t_point	world_to_minimap(t_game *game, t_point p)
 	return ((t_point){p.x * scale, p.y * scale});
 }
 
-// static t_ray	draw_ray(t_game *game, t_img *img, t_ray ray, int i)
-// {
-// 	int		wall_height;
-// 	t_point	wall_start;
-// 	t_point	wall_end;
-// 	t_point	window_bottom;
-// 	t_point	window_top;
-// 	float	corr;
+void	draw_rays(t_game *game, t_img *img)
+{
+	size_t	i;
 
-// 	// wall_height = (int)((WIN_HEIGHT / (ray.perp_dist * corr)));
-// 	// wall_start.y = (WIN_HEIGHT - wall_height) / 2;
-// 	// wall_end.y = wall_start.y + wall_height;
-// 	// wall_start.x = i;
-// 	// wall_end.x = i;
-// 	// window_bottom.x = i;
-// 	// window_bottom.y = 0;
-// 	// window_top.x = i;
-// 	// window_top.y = WIN_HEIGHT;
-// 	// game->rays[i] = ray;
+	i = -1;
+	while (++i < WIN_WIDTH)
+		sfe_draw_line(img,
+			world_to_minimap(game, ft_fpoint_to_point(game->player.pos)),
+			world_to_minimap(game, ft_fpoint_to_point(game->rays[i].hit)),
+			0x00FF00);
+}
 
-// 	// sfe_draw_line(img, window_bottom, window_top , 0x0);
-// 	// sfe_draw_line(img, wall_start, wall_end, 0xFFF);
-// 	// sfe_draw_line(img,
-// 	// 	world_to_minimap(game, ft_fpoint_to_point(game->player.pos)),
-// 	// 	world_to_minimap(game, ray.hit),
-// 	// 0x00FF00);
-// 	// sfe_draw_line(img,
-// 	// 	world_to_minimap(game, ft_fpoint_to_point(game->player.pos)),
-// 	// 	world_to_minimap(game, add_point(ft_fpoint_to_point(game->player.pos), (t_point){ray.dir.x * 50, ray.dir.y * 50})),
-// 	// 0x);
-// }
+static t_color	shade(t_color col, float shade)
+{
+	unsigned int	r;
+	unsigned int	g;
+	unsigned int	b;
 
+	if (shade > 1)
+		shade = 1;
+	r = col >> 16 & 0xFF;
+	g = col >> 8 & 0xFF;
+	b = col & 0xFF;
+	r = (float)r * shade;
+	g = (float)g * shade;
+	b = (float)b * shade;
+	return ((r << 16) | (g << 8) | (b));
+}
 	// Ici, selon les infos de raycast on peut savoir quelle texture afficher.
 	// ray.side == 0 && ray.step_x > 0 : WEST
 	// ray.side == 0 && ray.step_x < 0 : EAST
 	// ray.side == 1 && ray.step_y > 0 : NORTH
 	// ray.side == 1 && ray.step_y < 0 : SOUTH
 
-void	draw_map_ray(t_game *game, t_img *img, t_ray *ray)
-{
-	sfe_draw_line(img,
-		world_to_minimap(game, ft_fpoint_to_point(game->player.pos)),
-		world_to_minimap(game, ft_fpoint_to_point(ray->hit)),
-	0x00FF00);
-	// sfe_draw_line(img,
-	// 	world_to_minimap(game, ft_fpoint_to_point(game->player.pos)),
-	// 	world_to_minimap(game, add_point(ft_fpoint_to_point(game->player.pos), (t_point){ray->dir.x * 50, ray->dir.y * 50})),
-	// 0x0000ff);
-}
-
 static void	draw_walls(t_game *game, t_img *img, t_ray *ray)
 {
+	t_color	col;
 	int		wall_height;
 	t_point	wall_start;
 	t_point	wall_end;
@@ -87,12 +71,6 @@ static void	draw_walls(t_game *game, t_img *img, t_ray *ray)
 	wall_end.y = wall_start.y + wall_height;
 	wall_start.x = ray - game->rays;
 	wall_end.x = ray - game->rays;
-
-	t_color	col;
-	// ray.side == 0 && ray.step_x > 0 : WEST
-	// ray.side == 0 && ray.step_x < 0 : EAST
-	// ray.side == 1 && ray.step_y > 0 : NORTH
-	// ray.side == 1 && ray.step_y < 0 : SOUTH
 	if (ray->side == 0 && ray->step.x > 0)
 		col = 0xFF0000;
 	else if (ray->side == 0 && ray->step.x < 0)
@@ -100,7 +78,8 @@ static void	draw_walls(t_game *game, t_img *img, t_ray *ray)
 	else if (ray->side == 1 && ray->step.y > 0)
 		col = 0x0000FF;
 	else if (ray->side == 1 && ray->step.y < 0)
-		col = 0xFFFFFF;
+		col = 0xFFFF00;
+	col = shade(col, 5 / ray->length);
 	sfe_draw_line(img, wall_start, wall_end, col);
 }
 
@@ -110,8 +89,5 @@ void	raycast_draw(t_game *game, t_img *img)
 
 	i = -1;
 	while (++i < WIN_WIDTH)
-	{
-		// draw_map_ray(game, img, game->rays + i);
 		draw_walls(game, img, game->rays + i);
-	}
 }

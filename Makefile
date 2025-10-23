@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/23 13:32:20 by marykman         ###   ########.fr        #
+#    Updated: 2025/10/23 17:25:16 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,7 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 
 NAME				:=	cub3d
 
-FILES				:=	main.c \
-						draw_line.c \
-						draw_map.c
+FILES				:=	main.c
 FILES_EVENTS		:=	convert.c \
 						events.c
 FILES_MINIMAP		:=	init.c \
@@ -89,6 +87,7 @@ FILES_PLAYER		:=	init.c \
 FILES_RAYCAST		:=	init.c \
 						update.c \
 						draw.c \
+						dda.c \
 						raycast.c 
 FILES_SC_MAIN		:=	init.c \
 						update.c \

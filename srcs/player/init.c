@@ -6,11 +6,10 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:52:03 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/22 17:30:28 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:49:21 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math.h"
 #include "player.h"
 
 t_point	get_map_pos(t_map *map)
@@ -40,17 +39,19 @@ float	get_view_angle(int tile)
 		return (M_PI / 2);
 	else if (tile == TILE_E)
 		return (M_PI);
-	return (2* M_PI);
+	return (2 * M_PI);
 }
 
 void	player_init(t_game *game)
 {
 	t_point	map_pos;
+	int		tile;
 
 	map_pos = get_map_pos(&game->map);
+	tile = game->map.map[map_pos.y][map_pos.x];
 	game->player.pos.x = map_pos.x * CELL_SIZE + CELL_SIZE / 2;
 	game->player.pos.y = map_pos.y * CELL_SIZE + CELL_SIZE / 2;
-	game->player.view_angle = get_view_angle(game->map.map[map_pos.y][map_pos.x]);
+	game->player.view_angle = get_view_angle(tile);
 	game->player.step.x = cos(game->player.view_angle);
 	game->player.step.y = sin(game->player.view_angle);
 	game->map.map[map_pos.y][map_pos.x] = TILE_FLOOR;

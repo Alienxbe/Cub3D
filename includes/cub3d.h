@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 13:49:13 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:28:12 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,5 @@ typedef struct s_game
 	float		ray_angle_step;
 	t_bool		active_keys[GAME_KEY_LEN];
 }	t_game;
-
-
-void	draw_map(t_map map, t_point pos, t_point tile_size, t_img *img);
-
-void	sfe_draw_line(t_img *img, t_point a, t_point b, t_color color);
 
 #endif

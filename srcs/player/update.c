@@ -6,13 +6,11 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:38 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 11:50:27 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:46:07 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
-
-#include <stdio.h>
 
 static void	update_steps(t_player *player)
 {
@@ -30,13 +28,8 @@ static void	update_rotation(t_player *player, float speed)
 	update_steps(player);
 }
 
-void	player_update(t_game *game)
+static void	player_update_speed(t_game *game)
 {
-	game->player.spd = (t_fpoint){0};
-	if (game->active_keys[GAME_KEY_VIEW_LEFT])
-		update_rotation(&game->player, -PLAYER_ROTATION_SPEED);
-	if (game->active_keys[GAME_KEY_VIEW_RIGHT])
-		update_rotation(&game->player, PLAYER_ROTATION_SPEED);
 	if (game->active_keys[GAME_KEY_FORWARD])
 	{
 		game->player.spd.x += game->player.step.x;
@@ -59,5 +52,15 @@ void	player_update(t_game *game)
 	}
 	game->player.spd.x *= PLAYER_SPEED;
 	game->player.spd.y *= PLAYER_SPEED;
+}
+
+void	player_update(t_game *game)
+{
+	game->player.spd = (t_fpoint){0};
+	if (game->active_keys[GAME_KEY_VIEW_LEFT])
+		update_rotation(&game->player, -PLAYER_ROTATION_SPEED);
+	if (game->active_keys[GAME_KEY_VIEW_RIGHT])
+		update_rotation(&game->player, PLAYER_ROTATION_SPEED);
+	player_update_speed(game);
 	player_move(game);
 }

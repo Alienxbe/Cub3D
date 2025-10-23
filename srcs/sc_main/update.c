@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 14:20:00 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:36:23 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 void	main_update(t_sc_main *sc)
 {
-	minimap_update(sc->game);
 	player_update(sc->game);
 	raycast_update(sc->game);
+	minimap_update(sc->game);
 }
 
 int	sc_main_update(t_sc_main *sc)

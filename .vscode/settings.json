@@ -14,7 +14,11 @@
 		"ft_colors.h": "c",
 		"t_img.h": "c",
 		"minimap.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"t_color.h": "c",
+		"raycast.h": "c",
+		"sfe_pixel.h": "c",
+		"random": "c"
 	},
 	"makefile.configureOnOpen": false
 }
