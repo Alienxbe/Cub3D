@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 11:49:52 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:54:09 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@ static t_point	world_to_minimap(t_game *game, t_point p)
 
 void	draw_vision(t_game *game, t_img *img, t_point player_pos)
 {
-	float	start_angle;
-	float	end_angle;
-	float	angle_step;
-	float	current_angle;
+	t_point	end;
 
-	start_angle = game->player.view_angle - (PLAYER_FOV / 2);
-	end_angle = game->player.view_angle + (PLAYER_FOV / 2);
-	angle_step = PLAYER_FOV / (float)WIN_WIDTH;
-
-	return ;
+	end = ft_fpoint_to_point((t_fpoint){game->player.step.x * 40, game->player.step.y * 40});
+	// printf("end: %d %d\n", end.x, end.y);
+	sfe_draw_line(img,
+		player_pos,
+		add_point(player_pos, world_to_minimap(game, end)),
+		PLAYER_MINIMAP_RAY_COLOR
+	);
 }
 
 

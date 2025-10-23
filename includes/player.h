@@ -6,10 +6,11 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:49 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 11:49:08 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:51:08 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PLAYER_H
 # define PLAYER_H
 
 # include "ft_bool.h"
