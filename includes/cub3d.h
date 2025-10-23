@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 13:49:13 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:34:23 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_map
 	t_cardinal_dir	player_dir;
 	t_color			ceiling_col;	// t_color est juste un unsigned int (#AA RR GG BB)
 	t_color			floor_col;
-	char			*wall_text[CARDINAL_MAX];
+	char			*wall_text_path[CARDINAL_MAX];
 }	t_map;
 
 typedef struct s_minimap

@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/06/27 17:12:17 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 16:34:40 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	print_map_struct(t_map *map)
 	ft_printf("Floor color: %#010x\n", map->floor_col);
 	for (int i = 0; i < CARDINAL_MAX; i++)
 	{
-		if (map->wall_text[i])
-			ft_printf("Wall texture %d: %s\n", i, map->wall_text[i]);
+		if (map->wall_text_path[i])
+			ft_printf("Wall texture %d: %s\n", i, map->wall_text_path[i]);
 		else
 			ft_printf("Wall texture %d: NULL\n", i);
 	}
@@ -85,10 +85,10 @@ t_map	init_map(char *path)
 	map.player_dir = NORTH;
 	map.ceiling_col = 0x00000000;
 	map.floor_col = 0x00000000;
-	map.wall_text[NORTH] = NULL;
-	map.wall_text[SOUTH] = NULL;
-	map.wall_text[EAST] = NULL;
-	map.wall_text[WEST] = NULL;
+	map.wall_text_path[NORTH] = NULL;
+	map.wall_text_path[SOUTH] = NULL;
+	map.wall_text_path[EAST] = NULL;
+	map.wall_text_path[WEST] = NULL;
 	if (path)
 	{
 		if (!parse_file(path, &map))

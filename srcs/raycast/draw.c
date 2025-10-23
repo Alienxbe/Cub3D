@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 14:35:27 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 16:28:58 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ static t_point	world_to_minimap(t_game *game, t_point p)
 	// ray.side == 0 && ray.step_x < 0 : EAST
 	// ray.side == 1 && ray.step_y > 0 : NORTH
 	// ray.side == 1 && ray.step_y < 0 : SOUTH
+
+void	draw_texture(t_game *game, t_img *img, t_ray *ray)
+{
+	
+}
 
 void	draw_map_ray(t_game *game, t_img *img, t_ray *ray)
 {

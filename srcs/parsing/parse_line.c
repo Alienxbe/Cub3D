@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/06/27 17:15:59 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 16:34:01 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,18 @@ static int	parse_color(char *line, t_color *color)
 	return (1);
 }
 
-static int	parse_wall_text(char *line, char **text)
+static int	parse_wall(char *line, char **text)
 {
+	int fd;
+
 	if (ft_str_is_empty(line))
 		return (ft_printf("Error: Wall text path is empty\n"), -1);
-	if (*text)
+	if (!ft_strendwith(line, ".xpm"))
+		return (ft_printf("Error: Wrong file extension"), -1);
+	fd = open(line + 3, O_RDONLY);
+	if (!fd)
 		return (ft_printf("Error: Duplicate wall text definition\n"), -1);
+	close(fd);
 	*text = ft_strdup(line);
 	if (!*text)
 		return (ft_printf("Error: Memory allocation failed for text\n"), -1);
@@ -69,13 +75,13 @@ int	parse_line(char *line, t_map *map, int *line_c)
 	if (ft_str_is_empty(line) && map->map != NULL)
 		return (ft_printf("Error: Invalid map"), 1);
 	else if (ft_strstartwith(line, "NO "))
-		return ((*line_c)++, parse_wall_text(line + 3, &map->wall_text[NORTH]));
+		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[NORTH]));
 	else if (ft_strstartwith(line, "SO "))
-		return ((*line_c)++, parse_wall_text(line + 3, &map->wall_text[SOUTH]));
+		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[SOUTH]));
 	else if (ft_strstartwith(line, "EA "))
-		return ((*line_c)++, parse_wall_text(line + 3, &map->wall_text[EAST]));
+		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[EAST]));
 	else if (ft_strstartwith(line, "WE "))
-		return ((*line_c)++, parse_wall_text(line + 3, &map->wall_text[WEST]));
+		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[WEST]));
 	else if (ft_strstartwith(line, "C "))
 		return ((*line_c)++, parse_color(line + 2, &map->ceiling_col));
 	else if (ft_strstartwith(line, "F "))
