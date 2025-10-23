@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 11:54:09 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 13:57:28 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_vision(t_game *game, t_img *img, t_point player_pos)
 	sfe_draw_line(img,
 		player_pos,
 		add_point(player_pos, world_to_minimap(game, end)),
-		PLAYER_MINIMAP_RAY_COLOR
+		0xFF0000
 	);
 }
 

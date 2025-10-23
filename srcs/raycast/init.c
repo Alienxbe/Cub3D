@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:34:25 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 14:20:00 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/23 12:47:55 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/23 12:50:42 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap.h"
-#include "player.h"
 #include "raycast.h"
-#include "sc_main.h"
-#include <stdio.h>
 
-void	main_update(t_sc_main *sc)
+void	raycast_init(t_game *game)
 {
-	minimap_update(sc->game);
-	player_update(sc->game);
-	raycast_update(sc->game);
-}
-
-int	sc_main_update(t_sc_main *sc)
-{
-	main_update(sc);
-	main_draw(sc);
-	printf("fps: %d\n", sc->sfe->fps);
-	return (sc->running);
+	game->ray_angle_step = (PLAYER_FOV / (float)WIN_WIDTH);
 }
