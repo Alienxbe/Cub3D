@@ -6,11 +6,61 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/23 16:34:40 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 18:39:27 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	check_tile(t_map *map, int i, int j)
+{
+	int		neighbors[4];
+	int		k;
+
+	printf("%d\n", map->map[i][j]);
+	if (i <= 0 || j <= 0 || i >= map->size.y - 1 || j >= map->size.x - 1)
+		return (printf("Error\nMap not closed at tile %d, %d \n", i, j), -1);
+	neighbors[0] = map->map[i+1][j];
+	neighbors[1] = map->map[i-1][j];
+	neighbors[2] = map->map[i][j-1];
+	neighbors[3] = map->map[i][j+1];
+	k = 0;
+	while (k <= 3)
+	{
+		if (neighbors[k] == 6 || neighbors[k] == 7)
+		{
+			ft_printf("Error\nMap not closed at tile %d, %d \n", i, j);
+			return (-1);
+		}
+		k++;
+	}
+	return (0);
+}
+
+int	check_map_close(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map->size.y)
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			printf("%d, %d\n", i, j);
+			if (map->map[i][j] == 8 || map->map[i][j] == 2 || map->map[i][j] == 3 \
+				|| map->map[i][j] == 4 || map->map[i][j] == 5)
+			{
+				if (check_tile(map, i, j) == -1)
+					return (-1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 void	print_map_struct(t_map *map)
 {
@@ -93,10 +143,12 @@ t_map	init_map(char *path)
 	{
 		if (!parse_file(path, &map))
 		{
-			ft_printf("Error: Failed to parse file '%s'\n", path);
+			ft_printf("Error\n Failed to parse file '%s'\n", path);
 			exit(1);
 		}
 	}
+	if (check_map_close(&map) == -1)
+		exit(1);
 	print_map_struct(&map);
 	return (map);
 }

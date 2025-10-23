@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/23 16:34:01 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 17:06:17 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ static int	parse_wall(char *line, char **text)
 	if (ft_str_is_empty(line))
 		return (ft_printf("Error: Wall text path is empty\n"), -1);
 	if (!ft_strendwith(line, ".xpm"))
-		return (ft_printf("Error: Wrong file extension"), -1);
-	fd = open(line + 3, O_RDONLY);
-	if (!fd)
-		return (ft_printf("Error: Duplicate wall text definition\n"), -1);
+		return (ft_printf("Error: Wrong file extension\n"), -1);
+	fd = open(line, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("Error: Unable to open map file : %s \n", line), -1);
 	close(fd);
+	if (*text)
+		return (ft_printf("Error: Duplicate wall text definition\n"), -1);
 	*text = ft_strdup(line);
 	if (!*text)
 		return (ft_printf("Error: Memory allocation failed for text\n"), -1);

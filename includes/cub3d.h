@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 16:48:19 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/23 18:32:03 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef enum e_cardinal_dir
 
 typedef enum e_map_tile
 {
-	TILE_FLOOR = 0,
+	TILE_FLOOR = 8,
 	TILE_WALL = 1,
 	TILE_N = 2,
 	TILE_S = 3,
