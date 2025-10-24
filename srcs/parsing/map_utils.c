@@ -6,11 +6,37 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:33:20 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 14:31:36 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:26:22 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+int	col_isvalid(char **colors)
+{
+	int		i;
+	int		j;
+	t_bool	has_digit;
+
+	j = -1;
+	while (colors[++j])
+	{
+		i = 0;
+		has_digit = false;
+		while (ft_isspace(colors[j][i]))
+			i++;
+		while (ft_isdigit(colors[j][i]))
+		{
+			i++;
+			has_digit = true;
+		}
+		while (ft_isspace(colors[j][i]))
+			i++;
+		if (colors[j][i] != '\0' || has_digit == false)
+			return (0);
+	}
+	return (1);
+}
 
 static void	char_to_tile(char c, int *tile)
 {
@@ -37,7 +63,7 @@ static int	*line_to_int_arr(char *line, t_map *map)
 
 	arr = malloc(sizeof(int) * (ft_strlen(line) + 1));
 	if (!arr)
-		return (NULL);
+		return (ft_printf("Error\nMalloc Error\n"), NULL);
 	i = -1;
 	while (line[++i])
 	{
@@ -63,11 +89,11 @@ int	ft_realloc_map(char *line, t_map *map)
 	int		**new_map;
 
 	if (!line || !map)
-		return (0);
+		return (ft_printf("Error\nMem Error\n"), 0);
 	new_size = map->size.y + 1;
 	new_map = malloc(sizeof(int *) * (new_size + 1));
 	if (!new_map)
-		return (0);
+		return (ft_printf("Error\nMalloc Error\n"), 0);
 	i = -1;
 	while (++i < map->size.y)
 		new_map[i] = map->map[i];

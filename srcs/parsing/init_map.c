@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 16:50:48 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:06:04 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ t_map	init_map(char *path)
 	if (!parse_file(path, &map))
 	{
 		free_map(map);
+		exit(1);
+	}
+	if (!map.map)
+	{
+		ft_printf("Error\nInvalid map file\n");
 		exit(1);
 	}
 	if (!check_map_close(&map))

@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 15:51:08 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:24:02 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	parse_map_line(char *line, t_map *map)
 	if (line[i] != '\0')
 		return (ft_printf("Error\nInvalid character in map line\n"), -1);
 	if (!ft_realloc_map(line, map))
-		return (ft_printf("Error\nMemory allocation failed for map\n"), -1);
+		return (-1);
 	return (1);
 }
 
@@ -37,7 +37,7 @@ int	col_check_invalid_char(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!(ft_isdigit(line[i]) || line[i] == ' ' || line[i] == ','))
+		if (!(ft_isdigit(line[i]) || ft_isspace(line[i]) || line[i] == ','))
 			return (1);
 		if (line[i] == ',' && line[i + 1] == ',')
 			return (1);
@@ -53,11 +53,8 @@ int	col_check_invalid_char(char *line)
 static int	parse_color(char *line, t_color *color)
 {
 	char	**colors;
-	int		r;
-	int		g;
-	int		b;
+	int		rgb[3];
 
-	line = remove_whitespace(line);
 	if (col_check_invalid_char(line))
 		return (ft_printf("Error\nInvalid character in color line\n"), -1);
 	if (*color != 0x00000000)
@@ -66,14 +63,19 @@ static int	parse_color(char *line, t_color *color)
 		return (ft_printf("Error\nColor definition is empty\n"), -1);
 	colors = ft_split(line, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
-		return (ft_printf("Error\nInvalid color format\n"), -1);
-	r = ft_atoi(colors[0]);
-	g = ft_atoi(colors[1]);
-	b = ft_atoi(colors[2]);
+		return (free_arr((void ***)&colors), \
+		ft_printf("Error\nInvalid color format\n"), -1);
+	if (!col_isvalid(colors))
+		return (free_arr((void ***)&colors), \
+		ft_printf("Error\nInvalid colors\n"), -1);
+	rgb[0] = ft_atoi(colors[0]);
+	rgb[1] = ft_atoi(colors[1]);
+	rgb[2] = ft_atoi(colors[2]);
 	free_arr((void ***)&colors);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (rgb[0] < 0 || rgb[0] > 255 || rgb[1] < 0 || rgb[1] > 255 \
+		|| rgb[2] < 0 || rgb[2] > 255)
 		return (ft_printf("Error\nInvalid color values\n"), -1);
-	*color = (0xFF << 24) | (r << 16) | (g << 8) | b;
+	*color = (0xFF << 24) | (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
 	return (1);
 }
 
@@ -83,8 +85,12 @@ static int	parse_wall(char *line, char **text)
 
 	if (ft_str_is_empty(line))
 		return (ft_printf("Error\nWall text path is empty\n"), -1);
+	while (ft_isspace(*line))
+		line++;
+	line = remove_trailing_whitespaces(line);
 	if (!ft_strendwith(line, ".xpm"))
 		return (ft_printf("Error\nWrong file extension\n"), -1);
+
 	fd = open(line, O_RDONLY);
 	if (fd == -1)
 		return (ft_printf("Error\nUnable to open map file : %s \n", line), -1);
