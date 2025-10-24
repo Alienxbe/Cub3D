@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:24:02 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:53:01 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	col_check_invalid_char(char *line)
 {
 	int	i;
 
-	if (line[0] == ',' || line[0] == '\0')
+	if (line[0] == ',' || line[0] == '\0' || !ft_isspace(line[0]))
 		return (1);
 
 	i = 0;
@@ -56,7 +56,7 @@ static int	parse_color(char *line, t_color *color)
 	int		rgb[3];
 
 	if (col_check_invalid_char(line))
-		return (ft_printf("Error\nInvalid character in color line\n"), -1);
+		return (ft_printf("Error\nInvalid color line\n"), -1);
 	if (*color != 0x00000000)
 		return (ft_printf("Error\nMultiple color definition\n"), -1);
 	if (ft_str_is_empty(line))
@@ -85,6 +85,8 @@ static int	parse_wall(char *line, char **text)
 
 	if (ft_str_is_empty(line))
 		return (ft_printf("Error\nWall text path is empty\n"), -1);
+	if (!ft_isspace(line[0]))
+		return (ft_printf("Error\nIncorrect line formatting\n"), -1);
 	while (ft_isspace(*line))
 		line++;
 	line = remove_trailing_whitespaces(line);
@@ -109,23 +111,23 @@ int	parse_line(char *line, t_map *map, int *line_c)
 		return (0);
 	if (ft_str_is_empty(line) && map->map != NULL)
 		return (ft_printf("Error\nInvalid map"), 1);
-	else if (ft_strstartwith(line, "NO ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[NORTH]));
-	else if (ft_strstartwith(line, "SO ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[SOUTH]));
-	else if (ft_strstartwith(line, "EA ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[EAST]));
-	else if (ft_strstartwith(line, "WE ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_wall(line + 3, &map->wall_text_path[WEST]));
-	else if (ft_strstartwith(line, "C ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_color(line + 2, &map->ceiling_col));
-	else if (ft_strstartwith(line, "F ") && *line_c < OPT_NB)
-		return ((*line_c)++, parse_color(line + 2, &map->floor_col));
+	else if (ft_strstartwith(line, "NO") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_wall(line + 2, &map->wall_text_path[NORTH]));
+	else if (ft_strstartwith(line, "SO") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_wall(line + 2, &map->wall_text_path[SOUTH]));
+	else if (ft_strstartwith(line, "EA") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_wall(line + 2, &map->wall_text_path[EAST]));
+	else if (ft_strstartwith(line, "WE") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_wall(line + 2, &map->wall_text_path[WEST]));
+	else if (ft_strstartwith(line, "C") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_color(line + 1, &map->ceiling_col));
+	else if (ft_strstartwith(line, "F") && *line_c < OPT_NB)
+		return ((*line_c)++, parse_color(line + 1, &map->floor_col));
 	else if (*line_c >= OPT_NB)
 	{
 		if (*line_c == OPT_NB)
 			ft_printf("Map options processed... Parsing map matrice\n");
 		return ((*line_c)++, parse_map_line(line, map));
 	}
-	return (ft_printf("Error\nUnexpected non-option token\n"), -1);
+	return (ft_printf("Error\nUnexpected non-option token at line : %s\n", line), -1);
 }
