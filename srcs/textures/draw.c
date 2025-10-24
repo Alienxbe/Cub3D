@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 16:33:45 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 16:47:27 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:27:44 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_walls(t_img *img, t_ray *ray, t_texture *texture)
 	{
 		col = sfe_color_get(&texture->img, (t_point){tx, ty});
 		if (SHADING)
-			col = shade(col, 5 / ray->length);
+			col = shade(col, 3 / ray->length);
 		sfe_pixel_put(img,
 			(t_point){ray->wall_start.x, ray->wall_start.y + y}, col);
 		ty += ray->ty_step;
