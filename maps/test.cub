@@ -1,6 +1,6 @@
 NO ./textures/door.xpm
 SO ./textures/door.xpm
-WE ./textures/door.xpm
+WE ./textures/wall1.xpm
 EA ./textures/door.xpm
 
 F 125,125,0
