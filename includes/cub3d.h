@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 16:26:10 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:13:20 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WIN_WIDTH	1080
 # define WIN_HEIGHT	720
 # define TARGET_FPS	60
+# define SHOW_FPS	false
 
 # define CELL_SIZE	32
 

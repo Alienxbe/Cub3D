@@ -6,12 +6,11 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 12:43:50 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 16:09:27 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:12:09 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include <stdio.h>
 #include "raycast.h"
 
 static void	update_hit_dir(t_ray *ray)

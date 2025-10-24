@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:27:29 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:28:37 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:31:17 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@
 # endif
 
 /* Parsing */
-int		parse_line(char *line, t_map *map, int *line_counter);
-void	free_arr(void ***arr);
-t_bool	ft_str_is_empty(const char *str);
 t_map	init_map(char *path);
+int		parse_line(char *line, t_map *map, int *line_counter);
 int		ft_realloc_map(char *line, t_map *map);
 void	finish_gnl(int fd, char *line);
 char	*remove_trailing_whitespaces(char *str);
+
+void	free_arr(void ***arr);
+void	free_map(t_map map);
+
+t_bool	ft_str_is_empty(const char *str);
 int		col_isvalid(char **colors);
+void	finish_gnl(int fd, char *line);
 
 #endif

@@ -6,13 +6,11 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:01:01 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/22 17:46:24 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:12:13 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
-
-#include <stdio.h>
 
 static int	get_tile_type(const t_map *map, t_fpoint pos)
 {
