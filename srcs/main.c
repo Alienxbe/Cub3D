@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:32:04 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 12:43:37 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:18:47 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ int	main(int argc, char **argv)
 	t_sfe		*sfe;
 	t_game		game;
 	t_sc_main	sc;
-	
-	(void)argc; // Unused parameter
+
+	if (argc != 2)
+		return (ft_printf("Error : Wrong argument count\n"), -1);
 	game = (t_game){0};
 	sc = (t_sc_main){0};
 	game.map = init_map(argv[1]);
-	
+
 	sfe = sfe_init(WIN_NAME, (t_point){WIN_WIDTH, WIN_HEIGHT});
 	sfe_set_max_fps(sfe, TARGET_FPS);
 

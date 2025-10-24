@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 17:46:23 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 12:11:03 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef enum e_cardinal_dir
 
 typedef enum e_map_tile
 {
-	TILE_FLOOR = 0,
+	TILE_FLOOR = 8,
 	TILE_WALL = 1,
 	TILE_N = 2,
 	TILE_S = 3,
@@ -66,7 +66,7 @@ typedef struct s_map
 	t_cardinal_dir	player_dir;
 	t_color			ceiling_col;	// t_color est juste un unsigned int (#AA RR GG BB)
 	t_color			floor_col;
-	char			*wall_text[CARDINAL_MAX];
+	char			*wall_text_path[CARDINAL_MAX];
 }	t_map;
 
 typedef struct s_minimap
