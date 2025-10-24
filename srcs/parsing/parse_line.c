@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:56:53 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:57:47 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int	parse_line(char *line, t_map *map, int *line_c)
 			ft_printf("Map options processed... Parsing map matrice\n");
 		return ((*line_c)++, parse_map_line(line, map));
 	}
-	return (ft_printf("Error\nUnexpected non-option token at line : %s\n", line), -1);
+	return (ft_printf("Error\nUnexpected non-option token at line : %s\n",
+			line), -1);
 }
