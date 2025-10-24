@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:16 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 11:55:57 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 15:51:08 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,36 @@ static int	parse_map_line(char *line, t_map *map)
 
 	i = 0;
 	while (line[i] == ' ' || line[i] == '1' || line[i] == '0' || line[i] == 'N'\
-		|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+		|| line[i] == 'S' || line[i] == 'E' || line[i] == 'W' || line[i] == '2')
 		i++;
 	if (line[i] != '\0')
 		return (ft_printf("Error\nInvalid character in map line\n"), -1);
 	if (!ft_realloc_map(line, map))
 		return (ft_printf("Error\nMemory allocation failed for map\n"), -1);
 	return (1);
+}
+
+int	col_check_invalid_char(char *line)
+{
+	int	i;
+
+	if (line[0] == ',' || line[0] == '\0')
+		return (1);
+
+	i = 0;
+	while (line[i])
+	{
+		if (!(ft_isdigit(line[i]) || line[i] == ' ' || line[i] == ','))
+			return (1);
+		if (line[i] == ',' && line[i + 1] == ',')
+			return (1);
+		i++;
+	}
+
+	if (i > 0 && line[i - 1] == ',')
+		return (1);
+
+	return (0);
 }
 
 static int	parse_color(char *line, t_color *color)
@@ -34,6 +57,9 @@ static int	parse_color(char *line, t_color *color)
 	int		g;
 	int		b;
 
+	line = remove_whitespace(line);
+	if (col_check_invalid_char(line))
+		return (ft_printf("Error\nInvalid character in color line\n"), -1);
 	if (*color != 0x00000000)
 		return (ft_printf("Error\nMultiple color definition\n"), -1);
 	if (ft_str_is_empty(line))
@@ -44,7 +70,7 @@ static int	parse_color(char *line, t_color *color)
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
 	b = ft_atoi(colors[2]);
-	free_arr((void **)colors);
+	free_arr((void ***)&colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (ft_printf("Error\nInvalid color values\n"), -1);
 	*color = (0xFF << 24) | (r << 16) | (g << 8) | b;
