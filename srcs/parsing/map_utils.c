@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:33:20 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:26:22 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:37:18 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	*line_to_int_arr(char *line, t_map *map)
 		if (ft_str_is_empty(line + i))
 			break ;
 		char_to_tile(line[i], &arr[i]);
-		if (arr[i] == TILE_N || arr[i] == TILE_S \
+		if (arr[i] == TILE_N || arr[i] == TILE_S
 			|| arr[i] == TILE_E || arr[i] == TILE_W)
 		{
 			if (map->player_pos.x != -1 || map->player_pos.y != -1)
@@ -110,4 +110,3 @@ int	ft_realloc_map(char *line, t_map *map)
 		map->size.x = ft_strlen(line);
 	return (1);
 }
-
