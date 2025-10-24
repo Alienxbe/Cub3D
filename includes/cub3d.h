@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 17:28:12 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:46:23 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WIN_NAME	"Cub3D"
 # define WIN_WIDTH	1080
 # define WIN_HEIGHT	720
-# define TARGET_FPS	120
+# define TARGET_FPS	60
 
 # define CELL_SIZE	32
 

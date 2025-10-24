@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:54:53 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 16:54:54 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:01:35 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@ static void	draw_walls(t_game *game, t_img *img, t_ray *ray)
 	wall_height = (int)((WIN_HEIGHT / (ray->length * ray->corr_angle)));
 	if (wall_height > WIN_HEIGHT)
 		wall_height = WIN_HEIGHT;
-	wall_start.y = (WIN_HEIGHT - wall_height) / 2;
-	wall_end.y = wall_start.y + wall_height;
-	wall_start.x = ray - game->rays;
-	wall_end.x = ray - game->rays;
+	wall_start = (t_point){ray - game->rays, (WIN_HEIGHT - wall_height) / 2};
+	wall_end = (t_point){ray - game->rays, wall_start.y + wall_height};
+
 	if (ray->side == 0 && ray->step.x > 0)
 		col = 0xFF0000;
 	else if (ray->side == 0 && ray->step.x < 0)
