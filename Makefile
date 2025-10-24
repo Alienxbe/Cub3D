@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/23 17:25:16 by marykman         ###   ########.fr        #
+#    Updated: 2025/10/24 16:37:01 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,16 +69,18 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 
 NAME				:=	cub3d
 
-FILES				:=	main.c
+FILES				:=	main.c \
+						utils.c
 FILES_EVENTS		:=	convert.c \
 						events.c
 FILES_MINIMAP		:=	init.c \
 						update.c \
-						draw.c
+						draw.c \
+						rays.c \
+						utils.c
 FILES_PARSING		:=	parse_line.c \
 						init_map.c \
-						utils.c \
-						errors.c
+						utils.c
 FILES_PLAYER		:=	init.c \
 						update.c \
 						draw.c \
@@ -93,6 +95,8 @@ FILES_SC_MAIN		:=	init.c \
 						update.c \
 						draw.c \
 						destroy.c
+FILES_TEXTURES		:=	init.c \
+						draw.c
 
 SRCS				:=	$(addprefix srcs/, ${FILES})
 SRCS				+=	$(addprefix srcs/events/, ${FILES_EVENTS})
@@ -101,6 +105,7 @@ SRCS				+=	$(addprefix srcs/parsing/, ${FILES_PARSING})
 SRCS				+=	$(addprefix srcs/player/, ${FILES_PLAYER})
 SRCS				+=	$(addprefix srcs/raycast/, ${FILES_RAYCAST})
 SRCS				+=	$(addprefix srcs/sc_main/, ${FILES_SC_MAIN})
+SRCS				+=	$(addprefix srcs/textures/, ${FILES_TEXTURES})
 OBJS				:=	$(patsubst srcs%.c, objs%.o, ${SRCS})
 
 # header files
@@ -110,7 +115,8 @@ FILES				:=	cub3d.h \
 						parsing.h \
 						player.h \
 						sc_main.h \
-						raycast.h
+						raycast.h \
+						textures.h
 
 						
 HEADERS				:=	$(addprefix includes/, ${FILES});

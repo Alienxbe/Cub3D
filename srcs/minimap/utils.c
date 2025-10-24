@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:38:57 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 12:37:16 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/24 13:17:49 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/24 16:07:14 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sc_main.h"
+#include "cub3d.h"
 
-int	sc_main_destroy(t_sc_main *sc)
+t_point	world_to_minimap(t_game *game, t_point p)
 {
-	(void)sc; // TODO: free
-	return (true);
+	double	scale;
+
+	scale = (double)game->minimap.cell_size / CELL_SIZE;
+	return ((t_point){p.x * scale, p.y * scale});
 }

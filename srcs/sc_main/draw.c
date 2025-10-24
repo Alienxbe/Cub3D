@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 00:46:41 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 16:37:29 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 13:14:06 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "sc_main.h"
 #include "raycast.h"
 #include "sfe_pixel.h"
+#include "sfe_image.h"
 
 void	main_draw(t_sc_main *sc)
 {

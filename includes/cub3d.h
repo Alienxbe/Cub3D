@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 12:11:03 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:26:10 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,28 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	t_fpoint	dir;
+	t_fpoint		dir;
 	t_fpoint		hit;
-	float		angle;
-	t_point		map_pos;
-	t_fpoint	delta;
-	t_fpoint	c_dist;
-	int			side;
-	t_point		step;
-	float		length;
-	float		corr_angle;
+	t_cardinal_dir	hit_dir;		
+	float			angle;
+	t_point			map_pos;
+	t_fpoint		delta;
+	t_fpoint		c_dist;
+	int				side;
+	t_point			step;
+	float			length;
+	float			corr_angle;
+	int				wall_height;
+	t_point			wall_start;
+	float			ty_step;
+	float			ty_off;
 }	t_ray;
+
+typedef struct	s_texture
+{
+	t_img	img;
+	float	ratio;
+}	t_texture;
 
 typedef struct s_game
 {
@@ -108,9 +119,12 @@ typedef struct s_game
 	t_map		map;
 	t_player	player;
 	t_minimap	minimap;
+	t_texture	textures[CARDINAL_MAX];
 	t_ray		rays[WIN_WIDTH];
 	float		ray_angle_step;
 	t_bool		active_keys[GAME_KEY_LEN];
 }	t_game;
+
+float	normalise_angle(float angle);
 
 #endif

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:38:57 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 12:37:16 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/24 16:07:45 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/24 16:46:01 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sc_main.h"
+#include "cub3d.h"
 
-int	sc_main_destroy(t_sc_main *sc)
+float	normalise_angle(float angle)
 {
-	(void)sc; // TODO: free
-	return (true);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	if (angle > 2 * M_PI)
+		angle -= 2 * M_PI;
+	return (angle);
 }

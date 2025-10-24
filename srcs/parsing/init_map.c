@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 11:30:32 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 12:29:24 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,18 +127,10 @@ t_map	init_map(char *path)
 {
 	t_map	map;
 
-	map.map = NULL;
-	map.size.x = 0;
-	map.size.y = 0;
+	map = (t_map){0};
 	map.player_pos.x = -1;
 	map.player_pos.y = -1;
 	map.player_dir = NORTH;
-	map.ceiling_col = 0x00000000;
-	map.floor_col = 0x00000000;
-	map.wall_text_path[NORTH] = NULL;
-	map.wall_text_path[SOUTH] = NULL;
-	map.wall_text_path[EAST] = NULL;
-	map.wall_text_path[WEST] = NULL;
 	if (!parse_file(path, &map))
 		exit(1);
 	if (!check_map_close(&map))

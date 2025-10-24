@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 09:41:52 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 16:40:49 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:38:21 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	draw_grid(t_game *game, t_img *img)
 	}
 }
 
-void	draw_walls(t_game *game, t_img *img)
+static void	draw_walls(t_game *game, t_img *img)
 {
 	int		x;
 	int		y;

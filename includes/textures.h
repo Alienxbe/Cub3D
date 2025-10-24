@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 00:38:57 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 12:37:16 by marykman         ###   ########.fr       */
+/*   Created: 2025/10/24 12:32:14 by marykman          #+#    #+#             */
+/*   Updated: 2025/10/24 16:45:08 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sc_main.h"
+#ifndef TEXTURES_H
+# define TEXTURES_H
 
-int	sc_main_destroy(t_sc_main *sc)
-{
-	(void)sc; // TODO: free
-	return (true);
-}
+# include "sc_main.h"
+
+# define SHADING	false
+
+int		textures_init(t_sc_main *sc);
+void	draw_walls(t_img *img, t_ray *ray, t_texture *texture);
+
+#endif

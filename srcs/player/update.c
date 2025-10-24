@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:53:38 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/23 16:46:07 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:10:35 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ static void	update_steps(t_player *player)
 static void	update_rotation(t_player *player, float speed)
 {
 	player->view_angle += speed;
-	if (player->view_angle < 0)
-		player->view_angle += 2 * M_PI;
-	if (player->view_angle > 2 * M_PI)
-		player->view_angle -= 2 * M_PI;
+	player->view_angle = normalise_angle(player->view_angle);
 	update_steps(player);
 }
 
