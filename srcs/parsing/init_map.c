@@ -6,7 +6,7 @@
 /*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/23 18:39:27 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 11:30:32 by cproust          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int	check_tile(t_map *map, int i, int j)
 	int		neighbors[4];
 	int		k;
 
-	printf("%d\n", map->map[i][j]);
 	if (i <= 0 || j <= 0 || i >= map->size.y - 1 || j >= map->size.x - 1)
-		return (printf("Error\nMap not closed at tile %d, %d \n", i, j), -1);
+		return (printf("Error\nMap not closed at tile %d, %d \n", i, j), 0);
 	neighbors[0] = map->map[i+1][j];
 	neighbors[1] = map->map[i-1][j];
 	neighbors[2] = map->map[i][j-1];
@@ -30,36 +29,37 @@ int	check_tile(t_map *map, int i, int j)
 		if (neighbors[k] == 6 || neighbors[k] == 7)
 		{
 			ft_printf("Error\nMap not closed at tile %d, %d \n", i, j);
-			return (-1);
+			return (0);
 		}
 		k++;
 	}
-	return (0);
+	return (1);
 }
 
 int	check_map_close(t_map *map)
 {
 	int	i;
 	int	j;
+	int	**mat;
 
+	mat = map->map;
 	i = 0;
 	while (i < map->size.y)
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (mat[i][j])
 		{
-			printf("%d, %d\n", i, j);
-			if (map->map[i][j] == 8 || map->map[i][j] == 2 || map->map[i][j] == 3 \
-				|| map->map[i][j] == 4 || map->map[i][j] == 5)
+			if (mat[i][j] == 8 || mat[i][j] == 2 || mat[i][j] == 3 \
+				|| mat[i][j] == 4 || mat[i][j] == 5)
 			{
-				if (check_tile(map, i, j) == -1)
-					return (-1);
+				if (!check_tile(map, i, j))
+					return (0);
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 void	print_map_struct(t_map *map)
@@ -104,14 +104,14 @@ static	int	parse_file(const char *path, t_map *map)
 	line_counter = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		return (ft_printf("Error: Could not open file '%s'\n", path), 0);
+		return (ft_printf("Error\nCould not open file '%s'\n", path), 0);
 	while (get_next_line(fd, &line) > 0)
 	{
 		ret = parse_line(line, map, &line_counter);
 		if (ret < 0)
 		{
 			close(fd);
-			ft_printf("Error: Failed to parse line '%s'\n", line);
+			ft_printf("Failed to parse line '%s'\n", line);
 			return (free(line), 0);
 		}
 		free(line);
@@ -119,7 +119,7 @@ static	int	parse_file(const char *path, t_map *map)
 	}
 	free(line);
 	if (close(fd) < 0)
-		return (ft_printf("Error: Could not close file '%s'\n", path), 0);
+		return (ft_printf("Error\nCould not close file '%s'\n", path), 0);
 	return (1);
 }
 
@@ -139,16 +139,9 @@ t_map	init_map(char *path)
 	map.wall_text_path[SOUTH] = NULL;
 	map.wall_text_path[EAST] = NULL;
 	map.wall_text_path[WEST] = NULL;
-	if (path)
-	{
-		if (!parse_file(path, &map))
-		{
-			ft_printf("Error\n Failed to parse file '%s'\n", path);
-			exit(1);
-		}
-	}
-	if (check_map_close(&map) == -1)
+	if (!parse_file(path, &map))
 		exit(1);
-	print_map_struct(&map);
+	if (!check_map_close(&map))
+		exit(1);
 	return (map);
 }
