@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
+#    By: cproust <cproust@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/07 23:35:18 by marykman          #+#    #+#              #
-#    Updated: 2025/10/23 13:32:20 by marykman         ###   ########.fr        #
+#    Updated: 2025/10/24 14:35:25 by cproust          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ FILES_MINIMAP		:=	init.c \
 FILES_PARSING		:=	parse_line.c \
 						init_map.c \
 						utils.c \
-						errors.c
+						map_utils.c
 FILES_PLAYER		:=	init.c \
 						update.c \
 						draw.c \
