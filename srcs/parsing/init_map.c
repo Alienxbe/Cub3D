@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:30:44 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:06:04 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:36:51 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	check_tile(t_map *map, int i, int j)
 	int		k;
 
 	if (i <= 0 || j <= 0 || i >= map->size.y - 1 || j >= map->size.x - 1)
-		return (printf("Error\nMap not closed at tile %d, %d \n", i, j), 0);
-	neighbors[0] = map->map[i+1][j];
-	neighbors[1] = map->map[i-1][j];
-	neighbors[2] = map->map[i][j-1];
-	neighbors[3] = map->map[i][j+1];
+		return (ft_printf("Error\nMap not closed at tile %d, %d \n", i, j), 0);
+	neighbors[0] = map->map[i + 1][j];
+	neighbors[1] = map->map[i - 1][j];
+	neighbors[2] = map->map[i][j - 1];
+	neighbors[3] = map->map[i][j + 1];
 	k = 0;
 	while (k <= 3)
 	{
@@ -46,11 +46,10 @@ int	check_map_close(t_map *map)
 	i = 0;
 	while (i < map->size.y)
 	{
-
 		j = 0;
 		while (mat[i][j] != TILE_TERM)
 		{
-			if (mat[i][j] == 8 || mat[i][j] == 2 || mat[i][j] == 3 \
+			if (mat[i][j] == 8 || mat[i][j] == 2 || mat[i][j] == 3
 				|| mat[i][j] == 4 || mat[i][j] == 5)
 			{
 				if (!check_tile(map, i, j))
@@ -72,7 +71,6 @@ void	free_map(t_map map)
 	i = 0;
 	if (map.map != NULL)
 		free_arr((void ***)&map.map);
-
 	while (i <= 3)
 	{
 		if (map.wall_text_path[i] != NULL)
@@ -101,7 +99,6 @@ static	int	parse_file(const char *path, t_map *map)
 			return (finish_gnl(fd, line), 0);
 		}
 		free(line);
-
 	}
 	free(line);
 	if (close(fd) < 0)

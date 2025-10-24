@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproust <cproust@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:27:29 by cproust           #+#    #+#             */
-/*   Updated: 2025/10/24 18:31:17 by cproust          ###   ########.fr       */
+/*   Updated: 2025/10/24 18:39:25 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include "get_next_line.h"
 # include "ft_colors.h"
 # include "ft_point.h"
@@ -26,8 +25,6 @@
 # include "ft_memory.h"
 # include "ft_bool.h"
 # include "ft_ctype.h"
-
-
 
 # ifndef OPT_NB
 #  define OPT_NB 6

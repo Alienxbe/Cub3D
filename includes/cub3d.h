@@ -6,12 +6,12 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:48:31 by marykman          #+#    #+#             */
-/*   Updated: 2025/10/24 18:13:20 by marykman         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:40:14 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D
-# define CUB3D
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "math.h"
 # include "t_color.h"
@@ -65,7 +65,7 @@ typedef struct s_map
 	t_point			size;
 	t_point			player_pos;
 	t_cardinal_dir	player_dir;
-	t_color			ceiling_col;	// t_color est juste un unsigned int (#AA RR GG BB)
+	t_color			ceiling_col;
 	t_color			floor_col;
 	char			*wall_text_path[CARDINAL_MAX];
 }	t_map;
@@ -77,7 +77,6 @@ typedef struct s_minimap
 	// BONUS: Allow rotations
 	t_bool	show;
 }	t_minimap;
-
 
 typedef struct s_player
 {
@@ -108,7 +107,7 @@ typedef struct s_ray
 	float			ty_off;
 }	t_ray;
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	t_img	img;
 	float	ratio;
